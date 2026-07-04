@@ -1,0 +1,128 @@
+SELECT * FROM Customers;
+
+SELECT Customer_Name, City
+FROM Customers;
+
+SELECT *
+FROM Customers
+WHERE City = 'Delhi';
+
+SELECT *
+FROM Products
+WHERE Category = 'Electronics';
+
+SELECT *
+FROM Products
+WHERE Price > 5000;
+
+SELECT *
+FROM Products
+WHERE Stock <= 50;
+
+SELECT *
+FROM Products
+ORDER BY Price ASC;
+
+SELECT *
+FROM Products
+ORDER BY Price DESC;
+
+SELECT *
+FROM Customers
+ORDER BY Customer_Name ASC;
+
+SELECT *
+FROM Products
+ORDER BY Price DESC
+LIMIT 3;
+
+SELECT *
+FROM Customers
+LIMIT 2;
+
+SELECT *
+FROM Customers
+WHERE Customer_Name LIKE 'Rahul%';
+
+SELECT *
+FROM Products
+WHERE Product_Name LIKE '%it%';
+
+SELECT *
+FROM Customers
+WHERE Email LIKE '%gmail.com';
+
+SELECT *
+FROM Products
+WHERE Price BETWEEN 1000 AND 10000;
+
+SELECT *
+FROM Orders
+WHERE Order_Date
+BETWEEN '2025-07-01'
+AND '2025-07-31';
+
+SELECT *
+FROM Customers
+WHERE City IN ('Delhi','Mumbai');
+
+SELECT *
+FROM Products
+WHERE Category IN ('Electronics','Furniture');
+
+SELECT COUNT(*) AS Total_Customers
+FROM Customers;
+
+SELECT SUM(Total_Amount) AS Total_Sales
+FROM Orders;
+
+SELECT AVG(Price) AS Average_Price
+FROM Products;
+
+SELECT MAX(Price)
+FROM Products;
+
+SELECT MIN(Price)
+FROM Products;
+
+SELECT Category,
+COUNT(*) AS Total_Products
+FROM Products
+GROUP BY Category;
+
+SELECT Customer_ID,
+COUNT(*) AS Total_Orders
+FROM Orders
+GROUP BY Customer_ID;
+
+SELECT Category,
+COUNT(*) AS Total_Products
+FROM Products
+GROUP BY Category
+HAVING COUNT(*) > 1;
+
+SELECT
+Customers.Customer_Name,
+Orders.Order_ID,
+Orders.Order_Date,
+Orders.Total_Amount
+FROM Customers
+INNER JOIN Orders
+ON Customers.Customer_ID = Orders.Customer_ID;
+
+SELECT
+Products.Product_Name,
+Order_Items.Quantity
+FROM Products
+INNER JOIN Order_Items
+ON Products.Product_ID = Order_Items.Product_ID;
+
+SELECT
+Customers.Customer_Name,
+SUM(Orders.Total_Amount) AS Total_Spent
+FROM Customers
+INNER JOIN Orders
+ON Customers.Customer_ID = Orders.Customer_ID
+GROUP BY Customers.Customer_Name
+ORDER BY Total_Spent DESC;
+
