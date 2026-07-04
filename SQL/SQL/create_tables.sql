@@ -33,3 +33,14 @@ CREATE TABLE Order_Items (
     FOREIGN KEY (Product_ID)
     REFERENCES Products(Product_ID)
 );
+
+
+SHOW TABLES;
+
+DESC Customers;
+
+DESC Products;
+
+DESC Orders;
+
+DESC Order_Items;
