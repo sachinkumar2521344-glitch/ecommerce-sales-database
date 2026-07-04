@@ -31,3 +31,11 @@ ecommerce-sales-database/
 ├── README.md
 └── screenshots/
 ```
+## 🚀 How to Run
+
+1. Open MySQL Workbench.
+2. Run `create_database.sql`.
+3. Run `create_tables.sql`.
+4. Run `insert_data.sql`.
+5. Execute `queries.sql` to test SQL queries.
+
