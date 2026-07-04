@@ -126,3 +126,150 @@ ON Customers.Customer_ID = Orders.Customer_ID
 GROUP BY Customers.Customer_Name
 ORDER BY Total_Spent DESC;
 
+
+
+
+
+SELECT
+    Customers.Customer_Name,
+    Orders.Order_ID,
+    Orders.Total_Amount
+FROM Customers
+LEFT JOIN Orders
+ON Customers.Customer_ID = Orders.Customer_ID;
+
+SELECT
+    Customers.Customer_Name,
+    Orders.Order_ID
+FROM Customers
+RIGHT JOIN Orders
+ON Customers.Customer_ID = Orders.Customer_ID;
+
+SELECT
+    Product_Name,
+    Price,
+    CASE
+        WHEN Price >= 50000 THEN 'Premium'
+        WHEN Price >= 5000 THEN 'Mid Range'
+        ELSE 'Budget'
+    END AS Product_Category
+FROM Products;
+
+
+
+SELECT *
+FROM Products
+WHERE Price >
+(
+    SELECT AVG(Price)
+    FROM Products
+);
+
+SELECT *
+FROM Orders
+WHERE Total_Amount =
+(
+    SELECT MAX(Total_Amount)
+    FROM Orders
+);
+
+CREATE VIEW CustomerOrders AS
+SELECT
+    Customers.Customer_Name,
+    Orders.Order_Date,
+    Orders.Total_Amount
+FROM Customers
+JOIN Orders
+ON Customers.Customer_ID = Orders.Customer_ID;
+
+SELECT * FROM CustomerOrders;
+
+DROP VIEW CustomerOrders;
+
+UPDATE Orders
+JOIN Customers
+
+  SELECT
+    Customers.Customer_Name,
+    SUM(Orders.Total_Amount) AS Total_Spent
+FROM Customers
+JOIN Orders
+ON Customers.Customer_ID = Orders.Customer_ID
+GROUP BY Customers.Customer_Name;
+
+ON Orders.Customer_ID = Customers.Customer_ID
+SET Orders.Total_Amount = Orders.Total_Amount - 500
+WHERE Customers.City = 'Delhi';
+
+DELETE Orders
+FROM Orders
+JOIN Customers
+ON Orders.Customer_ID = Customers.Customer_ID
+WHERE Customers.City = 'Jaipur';
+
+SELECT *
+FROM Products
+ORDER BY Price DESC
+LIMIT 1;
+
+SELECT DISTINCT Price
+FROM Products
+ORDER BY Price DESC
+LIMIT 1 OFFSET 1;
+
+SELECT SUM(Total_Amount) AS Total_Sales
+FROM Orders;
+
+SELECT AVG(Total_Amount)
+FROM Orders;
+
+SELECT
+    Customers.Customer_Name,
+    SUM(Orders.Total_Amount) AS Total_Spent
+FROM Customers
+JOIN Orders
+ON Customers.Customer_ID = Orders.Customer_ID
+GROUP BY Customers.Customer_Name;
+
+SELECT Product_Name
+FROM Products
+WHERE Product_ID NOT IN
+(
+    SELECT Product_ID
+    FROM Order_Items
+);
+
+SELECT
+    Product_ID,
+    SUM(Quantity) AS Total_Sold
+FROM Order_Items
+GROUP BY Product_ID
+ORDER BY Total_Sold DESC;
+
+SELECT
+    Customers.Customer_Name,
+    SUM(Orders.Total_Amount) AS Total
+FROM Customers
+JOIN Orders
+ON Customers.Customer_ID = Orders.Customer_ID
+GROUP BY Customers.Customer_Name
+ORDER BY Total DESC
+LIMIT 1;
+
+SELECT *
+FROM Products
+WHERE Price <
+(
+    SELECT AVG(Price)
+   FROM Products
+);
+
+SELECT
+    Customers.City,
+    COUNT(Orders.Order_ID) AS Total_Orders
+FROM Customers
+LEFT JOIN Orders
+ON Customers.Customer_ID = Orders.Customer_ID
+GROUP BY Customers.City;
+
+
