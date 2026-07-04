@@ -18,3 +18,16 @@ This project demonstrates MySQL database design for an E-commerce application.
 - MySQL Workbench
 - Git
 - GitHub
+
+## 📁 Project Structure
+
+```text
+ecommerce-sales-database/
+│
+├── create_database.sql
+├── create_tables.sql
+├── insert_data.sql
+├── queries.sql
+├── README.md
+└── screenshots/
+```
