@@ -273,3 +273,98 @@ ON Customers.Customer_ID = Orders.Customer_ID
 GROUP BY Customers.City;
 
 
+
+
+
+
+
+
+
+
+
+CREATE INDEX idx_customer_name
+ON Customers(Customer_Name);
+
+
+SHOW INDEX FROM Customers;
+
+views.sql
+
+CREATE VIEW Sales_Report AS
+
+SELECT
+    c.Customer_Name,
+    p.Product_Name,
+    o.Order_Date,
+    o.Total_Amount
+
+FROM Customers c
+
+JOIN Orders o
+ON c.Customer_ID = o.Customer_ID
+
+JOIN Order_Items oi
+ON o.Order_ID = oi.Order_ID
+
+JOIN Products p
+ON oi.Product_ID = p.Product_ID;
+
+procedures.sql
+
+DELIMITER $$
+
+CREATE PROCEDURE GetAllCustomers()
+
+BEGIN
+
+SELECT * FROM Customers;
+
+END $$
+
+DELIMITER ;
+
+CALL GetAllCustomers();
+
+SELECT
+
+Product_Name,
+
+Price,
+
+RANK() OVER(ORDER BY Price DESC) AS Product_Rank
+
+FROM Products;
+
+SELECT
+
+Customer_Name,
+
+ROW_NUMBER() OVER(ORDER BY Customer_Name)
+
+FROM Customers;
+
+SELECT
+
+Product_Name,
+
+Price,
+
+DENSE_RANK() OVER(ORDER BY Price DESC)
+
+FROM Products;
+
+Database
+
+↓
+
+Reverse Engineer
+
+↓
+
+Select EcommerceDB
+
+↓
+
+Finish
+
+
